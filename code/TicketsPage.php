@@ -41,41 +41,22 @@ class TicketsPage extends Page_Controller{
 	public function index(){
 		
 		return $this->render(array(
-			'Title' => "Tickets",
-			'TicketsForm' => self::TicketsForm()
-		));
+			'Title' => "Tickets"
+			
+			));
 		
 	}
 	/**
 	 * Show the current open tickets
 	 */	
-	public function TicketsForm() {
+	public function Tickets() {
+	$filter = array("Status"=>"Open");
+	return self::get_tickets($filter);
 	
-	$config = GridFieldConfig::create();
-	// Provide a header row with filter controls
-	$config->addComponent(new GridFieldFilterHeader());
-	// Provide a default set of columns based on $summary_fields
-	$config->addComponent(new GridFieldDataColumns());
-	// Provide a header row with sort controls
-	$config->addComponent(new GridFieldSortableHeader());
-	// Paginate results to 25 items per page, and show a footer with pagination controls
-	$config->addComponent(new GridFieldPaginator(25));
-	
-	//@TODO - add some way of filtering via a search
-	$filter = array('Status'=>'Open');
-	
-	$fields = new GridField("Tickets", "All Tickets", self::get_tickets($filter), $config);
-	
-	/*$tickets->setDisplayFields(array(
-    'TicketNum' => 'Ticket #',
-    'Title' => 'Summary',
-    'Version.Title' => 'Version',
-    'Status' => 'Status',
-    'Priority' => 'Priority'
-    		));*/
-	
-	
-	return new Form("TicketForm", $this, new FieldSet($fields), new FieldSet());;
+    
+    
+    
+ 
 	}
 	
 	

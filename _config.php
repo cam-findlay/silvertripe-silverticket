@@ -10,9 +10,4 @@ if($dir != "silverticket") {
 }
 
 
-// Check dependencies
-if(!class_exists("TagField")) {
-	user_error(_t('Messages.DATAOBJECTMANAGER','The Postale module requires TagField'),E_USER_ERROR);
-}
-
 TicketsPage::set_url('tickets');
